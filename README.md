@@ -1,2 +1,2 @@
-# log-rng
+# Log RNG
 RNG C++ library for practice
