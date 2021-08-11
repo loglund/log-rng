@@ -21,6 +21,9 @@ namespace uniform
 // 2^64 - 1 on 64-bit. So there are atleast a little over 4 billion
 // values to choose.
 
+constexpr uint64_t lehmer_modulus = 2147483647;
+constexpr uint64_t lehmer_constant = 16807;
+
 class conqruential
 {
 public:
@@ -44,11 +47,11 @@ public:
 
     void set_seed(uint64_t seed);
 
-    uint64_t seed = 0;
+    uint64_t seed = 1;
 
-    // auto generate() -> double;
+    auto generate() -> double;
 
-    // auto generate(std::size_t number) -> std::vector<double>;
+    auto generate(std::size_t samples) -> std::vector<double>;
 
 public:
     /// implementation detail

@@ -30,6 +30,23 @@ void conqruential::set_seed(uint64_t seed)
     (*this).seed = seed;
 }
 
+double conqruential::generate()
+{
+    uint64_t next = lehmer_constant * (*this).seed % lehmer_modulus;
+    (*this).set_seed(next);
+    return (double)1 / next;
+}
+
+std::vector<double> conqruential::generate(std::size_t samples)
+{
+    std::vector<double> uniform_vector = {};
+    for (uint64_t i = 0; i < samples; i++)
+    {
+        uniform_vector.push_back((*this).generate());
+    }
+    return uniform_vector;
+}
+
 }
 }
 }
