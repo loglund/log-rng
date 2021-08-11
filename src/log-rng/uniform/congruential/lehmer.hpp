@@ -1,7 +1,7 @@
 #include "../../version.hpp"
 
 #include <memory>
-#include <stdint>
+#include <stdint.h>
 #include <vector>
 
 namespace rng
@@ -12,6 +12,10 @@ namespace uniform
 {
 // @brief implementing a simple conqruential algorithm for generating
 // pseudo-random numbers
+//
+// The generation step is the calculation of
+//          x_(k+1) = a * x_k % m
+// where 'a' is a constant, 'm' is the chosen modulus and x_0 is the seed.
 //
 // The algorithm has a period of 2^32 - 1 on 32-bit systems and
 // 2^64 - 1 on 64-bit. So there are atleast a little over 4 billion
@@ -40,9 +44,11 @@ public:
 
     void set_seed(uint64_t seed);
 
-    auto generate() -> double;
+    uint64_t seed = 0;
 
-    auto generate_multi(std::size_t number) -> std::vector<double>;
+    // auto generate() -> double;
+
+    // auto generate(std::size_t number) -> std::vector<double>;
 
 public:
     /// implementation detail
